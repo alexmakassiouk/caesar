@@ -94,8 +94,8 @@ def alphabet_recognition(text):
 ###### TESTING ######
 
 
-kryptertNorsk = load_text("encryptedVGArticle.txt")
-print(decrypt_by_spaces(kryptertNorsk, NORWEGIAN_ALPHABET))
+kryptertFil = load_text("encryptedCaesarQuote.txt")
+print(decrypt_without_alphabet(kryptertFil))
 
 
 #encryptedEnglish = load_text("encryptedEnglish.txt")
@@ -116,7 +116,7 @@ print(decrypt_by_spaces(kryptertNorsk, NORWEGIAN_ALPHABET))
 #def main():
 #    filename = input("Skriv inn filnavn: (.txt)")
 #    encrypt_char = input("Kryptere eller dekryptere? (K/D)")
-#    offset = int(input("Gi inn offset: "))
+#    offset = int(input("Skriv inn offset(nøkkel): "))
 #    text = load_text(filename)
 #    alphabet_in_file = ALPHABETS[alphabet_recognition(text)]
 #    if encrypt_char == 'K':
