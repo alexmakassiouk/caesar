@@ -25,13 +25,15 @@ def encrypt(text, alphabet, offset):
     encryption_alphabet = offset_alphabet(alphabet, offset)
     encrypted_text = ""
     for char in text:
-        char = char.lower()
         if char.isdigit():
             encrypted_text+=str((int(char)+offset)%10)
         elif char in special_chars:
             encrypted_text+=char
+        elif char.isupper():
+            index = indexOf(alphabet, char.lower())
+            encrypted_text+=encryption_alphabet[index].upper()
         else:
-            index = indexOf(alphabet, char)
+            index = indexOf(alphabet, char.lower())
             encrypted_text+=encryption_alphabet[index]
     return encrypted_text
 
@@ -41,16 +43,6 @@ def decrypt(text, alphabet, offset):
 
 
 ### ADDITIONAL FUN ###
-def decrypt_without_alphabet(text):
-    alphabet_index = alphabet_recognition(text) #Runtime may be much better, but no practical implications on decently sized texts
-    match alphabet_index:
-        case 0:
-            return decrypt_without_offset(text, ENGLISH_ALPHABET)
-        case 1:
-            return decrypt_without_offset(text, NORWEGIAN_ALPHABET)
-        case _:
-            return "No support for this alphabet yet!"
-
 def decrypt_without_offset(text, alphabet): # Finds the offset for which shifted_text yields most amount of words in common_words
     matches = [0] * len(alphabet)
     for i in range(1,len(alphabet)):
@@ -91,44 +83,48 @@ def alphabet_recognition(text):
 
 
 
-###### TESTING ######
 
-
-kryptertFil = load_text("encryptedCaesarQuote.txt")
-print(decrypt_without_alphabet(kryptertFil))
-
-
-#encryptedEnglish = load_text("encryptedEnglish.txt")
-#print(decrypt_without_alphabet(encryptedEnglish))
-
-
-#plaintext = loadText("plaintext.txt")
-#greek_lorem_impsum = loadText("loremIpsumGreek.txt")
-#russian_text = loadText("russianText.txt")
-#englishPlaintext = loadText("englishPlaintext.txt")
-#
-#encrypted_text = encrypt(russian_text, CYRILLIC_ALPHABET, 17)
-#print(encrypted_text)
-#print(decrypt(encrypted_text, CYRILLIC_ALPHABET, 17))
-#print(alphabet_recognition(encrypted_text))
 
 ### MAIN ###
-#def main():
-#    filename = input("Skriv inn filnavn: (.txt)")
-#    encrypt_char = input("Kryptere eller dekryptere? (K/D)")
-#    offset = int(input("Skriv inn offset(nøkkel): "))
-#    text = load_text(filename)
-#    alphabet_in_file = ALPHABETS[alphabet_recognition(text)]
-#    if encrypt_char == 'K':
-#        new_text = encrypt(text, alphabet_in_file, offset)
-#    else:
-#        new_text = decrypt(text, alphabet_in_file, offset)
-#        print(new_text)
-#    write_char = input("Lagre til fil? (J/N)")
-#    if write_char == 'J':
-#        filename = input("filnavn: ") + ".txt"
-#    write_file(filename, new_text)
-#    print("Lagret til ", filename, "!")
+def main():
+    filename = input("Skriv inn filnavn: (.txt)")
+    encrypt_char = input("Kryptere eller dekryptere? (K/D)")
+    try:
+        text = load_text(filename)
+        alphabet_in_file = ALPHABETS[alphabet_recognition(text)]
+    except:
+        print("finner ikke", filename, "!")
+        return
+    if encrypt_char == 'D':
+        known_key = input("Kjenner du nøkkelen? (J/N)")
+        if known_key == 'N':
+            new_text = decrypt_without_offset(text, alphabet_in_file)
+            print(new_text)
+        else:
+            try:
+                offset = int(input("Skriv inn offset(nøkkel): "))
+                new_text = encrypt(text, alphabet_in_file, offset)
+                print(new_text)
+            except:
+                print("Ugyldig nøkkel!")
+                return
+    else:
+        try:
+            offset = int(input("Skriv inn offset(nøkkel): "))
+            new_text = decrypt(text, alphabet_in_file, offset)
+            print(new_text)
+        except:
+            print("Ugyldig nøkkel!")
+            return
+    write_char = input("Lagre til fil? (J/N)")
+    if write_char == 'J':
+        filename = input("filnavn: ") + ".txt"
+        write_file(filename, new_text)
+        print("Lagret til ", filename, "!")
 ###-------------###
 
-#main()
+main()
+
+# Videre tanker: 
+# Kan andre formater enn txt støttes?
+# Skal det loopes helt til bruker sir fra at hen er ferdig?
