@@ -1,17 +1,20 @@
 from operator import indexOf
-from alphabets import ALPHABETS, ENGLISH_ALPHABET, NORWEGIAN_ALPHABET, GREEK_ALPHABET, CYRILLIC_ALPHABET, HEBREW_ALPHABET
+from alphabets import ALPHABETS
 from commonWords import common_words
 import re
+
 
 ### FILE HANDLING ###
 def load_text(filename):
     with open('data/' + filename) as f:
         text = f.read()
         return text
+
 def write_file(filename, data):
     with open('data/' + filename, 'w') as f:
         f.write(data)
 ###-----------------###
+
 
 ### CORE METHODS ###
 def offset_alphabet(alphabet, offset):
@@ -82,9 +85,6 @@ def alphabet_recognition(text):
 ###-----------------###
 
 
-
-
-
 ### MAIN ###
 def main():
     filename = input("Skriv inn filnavn: (.txt)")
@@ -122,6 +122,7 @@ def main():
         write_file(filename, new_text)
         print("Lagret til ", filename, "!")
 ###-------------###
+
 
 main()
 
