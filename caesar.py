@@ -129,3 +129,5 @@ main()
 # Videre tanker: 
 # Kan andre formater enn txt støttes?
 # Skal det loopes helt til bruker sir fra at hen er ferdig?
+# Et lite hull jeg kom på helt til slutt: Hvis den krypterte tekstens plaintext egentlig har norske bokstaver, men har blitt kryptert til å ikke inneholde æ, ø, eller å ->
+#       så vil nok språket gjenkjennes som engelsk og den dekrypterte teksten kan bli helt feil. (Obs: Sjeldent tilfelle)

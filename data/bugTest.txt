@@ -1,0 +1,6 @@
+Dette er en tekst som  estår  v æ, ø og å.
+Jeg sk l kryptere den, og deretter dekryptere den. D  vil 
+ lf  etet  li gjenkjent som engelsk hvis den krypterte teksten ikke  estår  v
+verken æ, ø eller å. Dette vil føre til en feil i den dekrypterte pl intexten.
+Sk l kunne fikses ved å spørre  rukeren hvilken språk hen tror det er, 
+eller eventuelt   re kjøre en g ng til med et  nnet  lf  et hvis result tet sto til stryk hos  rukeren.
