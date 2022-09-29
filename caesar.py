@@ -131,3 +131,4 @@ main()
 # Skal det loopes helt til bruker sir fra at hen er ferdig?
 # Et lite hull jeg kom på helt til slutt: Hvis den krypterte tekstens plaintext egentlig har norske bokstaver, men har blitt kryptert til å ikke inneholde æ, ø, eller å ->
 #       så vil nok språket gjenkjennes som engelsk og den dekrypterte teksten kan bli helt feil. (Obs: Sjeldent tilfelle)
+#       Løsningsforslag: Bare legg inn ekstra logikk i main for å spørre om bruker kjenner til alfabetet. Hvis ikke: Spør om bruker er tilfreds med svaret eller om hen vil prøve et annet alfabet
