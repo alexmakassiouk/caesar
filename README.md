@@ -1,5 +1,7 @@
 # Caesar Encryption/Decryption
 
+> Task for technical part of software dev interview
+
 main file: caesar.py
 
 Feel free to use sample texts located in 'data' folder.
